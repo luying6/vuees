@@ -1,7 +1,19 @@
+// https://juejin.im/post/584e48b2ac502e006c74a120
+// 检查node和npm的版本
+// 引入相关插件和配置
+// 创建express服务器和webpack编译器
+// 配置开发中间件（webpack-dev-middleware）和热重载中间件（webpack-hot-middleware）
+// 挂载代理服务和中间件
+// 配置静态资源
+// 启动服务器监听特定端口（8080）
+// 自动打开浏览器并打开特定网址（localhost:8080）
+// 说明： express服务器提供静态文件服务，不过它还使用了http-proxy-middleware，一个http请求代理的中间件。前端开发过程中需要使用到后台的API的话，可以通过配置proxyTable来将相应的后台请求代理到专用的API服务器。
+
+
 // 检查node.js和npm版本
 require('./check-versions')();
 
-// 获取配置
+// 获取 config/index.js 的默认配置
 var config = require('../config');
 // 如果Node的环境变量中没有设置当前的环境(NODE_ENV),则使用config中的配置当做当前环境的配置
 if (!process.env.NODE_ENV) {
@@ -11,13 +23,17 @@ if (!process.env.NODE_ENV) {
 //一个可以调用默认软件打开网址、图片、文件等内容的插件
 //这里用它来调用默认浏览器打开dev-server监听的端口，例如:localhost:8080
 var opn = require('opn');
+// 使用 NodeJS 自带的文件路径工具
 var path = require('path');
+// 使用 express
 var express = require('express');
+// 使用 webpack
 var webpack = require('webpack');
 
 //一个express中间件，用于将http请求代理到其他服务器
 //例：localhost:8080/api/xxx --》 localhost:3000/api/xxx;
 //这里使用该插件可以将前端开发中涉及到的请求代理到api服务器上，方便与服务器对接
+// 在config/index.js中可以对proxyTable想进行配置
 var proxyMiddleware = require('http-proxy-middleware');
 
 //根据Node环境引入相应的webpack配置

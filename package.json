@@ -4,6 +4,8 @@
   "description": "A Vue.js project",
   "author": "luying <2225745210@qq.com>",
   "private": true,
+
+//  在开发环境下，在命令行中运行npm run dev就相当于在执行node build/dev-server.js。所以script字段是用来指定npm相关命令的缩写的
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
@@ -13,6 +15,11 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
+
+
+//  dependencies字段指定了项目运行时所依赖的模块，
+//  devDependencies字段指定了项目开发时所依赖的模块。
+//  在命令行中运行npm install命令，会自动安装dependencies和devDependencies字段中的模块。
   "dependencies": {
     "vue": "^2.2.6",
     "vue-router": "^2.3.1"
